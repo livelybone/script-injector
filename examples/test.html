@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ScriptInjector</title>
+
+  <!-- Inject some helpers for code running. It is not needed in a real project when you configured babel-polyfill or there is no new feature of js which is used in the project -->
+  <!-- 为代码运行注入一些babel帮助函数。在真正的babel项目中，当已配置 babel-polyfill 时，或者js没有新特性时，并不需要它 -->
+  <script src="https://cdn.jsdelivr.net/npm/@babel/polyfill/dist/polyfill.min.js"></script>
+
+  <script src="../lib/umd/index.js"></script>
+</head>
+<body>
+<div id="module">
+  <button onclick="injectJs()">inject js: `alert("1")`</button>
+  <button onclick="injectCss()">inject css: `body { background: #000 }`</button>
+</div>
+
+<script>
+var module = document.getElementById('module')
+// do something ...
+
+function injectJs() {
+  ScriptInjector.inject('alert("1")').then(() => console.log('inject success'), err => console.error('inject failed', err))
+}
+
+function injectCss() {
+  ScriptInjector.inject('body { background: #000 }', { type: 'css' }).then(() => console.log('inject success'), err => console.error('inject failed', err))
+}
+</script>
+</body>
+</html>
