@@ -39,13 +39,13 @@ export function inject(content: string, options?: InjectOptions) {
     jsInline: {
       tag: 'script',
       attrs: {
-        type: 'text/javascript',
+        type: options?.attrs?.type ?? 'text/javascript',
       },
     },
     jsLink: {
       tag: 'script',
       attrs: {
-        type: 'text/javascript',
+        type: options?.attrs?.type ?? 'text/javascript',
         src: content,
       },
     },
