@@ -32,6 +32,11 @@ export interface InjectOptions {
    * Default: 'head'
    * */
   injectIn?: 'body' | 'head'
+
+  /**
+   * Content is a link
+   */
+  isLink?: boolean
 }
 
 export function inject(content: string, options?: InjectOptions) {
@@ -72,7 +77,7 @@ export function inject(content: string, options?: InjectOptions) {
     tag = null
   }
   return new Promise<HTMLElement>((resolve, reject) => {
-    const isLink = /(^https?:)|(^\.{0,2}\/)/.test(content)
+    const isLink = options?.isLink ?? /(^https?:)|(^\.{0,2}\/)/.test(content)
     const key = `${type}${isLink ? 'Link' : 'Inline'}` as keyof typeof map
     const info = map[key]
 
