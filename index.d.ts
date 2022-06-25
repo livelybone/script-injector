@@ -25,6 +25,10 @@ interface InjectOptions {
    * Default: 'head'
    * */
   injectIn?: 'body' | 'head'
+  /**
+   * Content is a link
+   */
+  isLink?: boolean
 }
 declare function inject(
   content: string,
